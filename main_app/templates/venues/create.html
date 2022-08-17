@@ -2,13 +2,16 @@
 {% block content %}
 
 {% if band.user.username == user.username %}
-<h3>Add A Venue</h3>
+<!-- <div class="center-align"> -->
+    <h3>Add A Venue</h3>
 
-<form action="{% url 'add_venue' band.id %}" method="POST">
-    {% csrf_token %}
-    {{ venue_form.as_p }}
-    <input type="submit" class="btn" value="Add Venue">
-</form>
+    <form action="{% url 'add_venue' band.id %}" method="POST">
+        {% csrf_token %}
+        {{ venue_form.as_p }}
+        <input type="submit" class="btn" value="Add Venue">
+    </form>
+<!-- </div> -->
+
 {% endif %}
 
 <script>

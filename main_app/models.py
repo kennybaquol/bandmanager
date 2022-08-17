@@ -28,7 +28,7 @@ class Venue(models.Model):
     email = models.CharField(max_length=150, blank=True)
     phone = models.CharField(max_length=30, blank=True)
     note = models.CharField(max_length=150, blank=True)
-    status = models.CharField(max_length=30, choices=STATUSES, default=STATUSES[0][0])
+    status = models.CharField(max_length=30, choices=STATUSES)
     band = models.ForeignKey(Band, on_delete=models.CASCADE)
 
     def __str__(self):
