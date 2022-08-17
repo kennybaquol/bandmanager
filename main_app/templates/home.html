@@ -1,6 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Home</h1>
+{% if user.is_authenticated %}
+<h1 class="center-align">Welcome, {{ user.username }}!</h1>
+
+{% else %}
+<h1 class="center-align">Band Manager</h1>
+<h3 class="center-align">So easy that a singer could use it!</h3>
+
+{% endif %}
 
 {% endblock %}

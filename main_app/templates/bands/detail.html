@@ -3,11 +3,13 @@
 
 
 {% if band.user.username == user.username %}
-<h1>{{ band.name }}</h1>
+<div class="center-align">
+    <h1>{{ band.name }}</h1>
 
-<div class="row">
-    <h4><a href="{% url 'venues_index' band.id %}">Venues</a></h4>
+    <div class="row">
+        <h4><a href="{% url 'venues_index' band.id %}">Venues</a></h4>
 
+    </div>
 </div>
 
 {% endif %}

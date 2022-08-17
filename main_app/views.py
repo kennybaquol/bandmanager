@@ -87,7 +87,7 @@ def add_venue(request, band_id):
     new_venue = form.save(commit=False)
     new_venue.band_id = band_id
     new_venue.save()
-  return redirect('detail', band_id=band_id)
+  return redirect('venues_index', band_id=band_id)
 
 # GET route that takes the user to the page with the edit venue form
 @login_required
@@ -111,7 +111,7 @@ def edit_venue(request, band_id, venue_id):
     venue.id = venue_id
     venue.band_id = band.id
     venue.save()
-  return redirect('detail', band_id=band_id)
+  return redirect('venues_index', band_id=band_id)
 
 class BandCreate(LoginRequiredMixin, CreateView):
   model = Band

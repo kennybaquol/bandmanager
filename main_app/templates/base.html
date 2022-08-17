@@ -17,13 +17,13 @@
 <body>
     <header class="navbar-fixed">
         <nav>
-            <div class="nav-wrapper">
+            <div class="nav-wrapper deep-purple darken-3">
                 <ul>
-                    <li><a href="/" class="left brand-logo">&nbsp;&nbsp;Band Manager</a></li>
+                    <li><a href="{% url 'home' %}" class="left brand-logo">&nbsp;&nbsp;Band Manager</a></li>
                 </ul>
                 <ul class="right">
-                    <li><a href="{% url 'home' %}">Home</a></li>
-                    <li><a href="{% url 'about' %}">About</a></li>
+                    <!-- <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'about' %}">About</a></li> -->
                     {% if user.is_authenticated %}
                     <li><a href="{% url 'bands_create' %}">Add a Band</a></li>
                     <li><a href="{% url 'bands_index' %}">View My Bands</a></li>
@@ -40,8 +40,8 @@
         {% block content %}
         {% endblock %}
     </main>
-    <footer class="page-footer">
-        <div class="right">All Rights Reserved, &copy; 2022 Band Manager &nbsp;</div>
+    <footer class="page-footer deep-purple darken-3 right-align">
+        <div>All Rights Reserved, &copy; 2022 Band Manager &nbsp;</div>
     </footer>
 </body>
 
