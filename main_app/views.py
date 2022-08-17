@@ -110,6 +110,8 @@ def edit_venue(request, band_id, venue_id):
     band = Band.objects.get(id=band_id)
     venue.id = venue_id
     venue.band_id = band.id
+    print(venue.phone)
+    print(venue.email)
     venue.save()
   return redirect('venues_index', band_id=band_id)
 

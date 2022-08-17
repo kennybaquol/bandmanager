@@ -25,9 +25,9 @@
         <input id="id_note" type="text" value="{{ venue.note }}" name="note">
     </p>
     <p><label for="id_status">Status:</label>
-        <select id="id_status" value="{{ venue.get_status_display }}" name="status">
+        <select id="id_status" value="{{ venue.status }}" name="status">
             {% if venue.status == "N" %}
-            <option selected="selected">Not Contacted</option>
+            <option value="N" selected>Not Contacted</option>
             <option value="C">Contacted</option>
             <option value="F">Followed Up With</option>
             <option value="B">Successfully Booked</option>
@@ -35,7 +35,7 @@
             {% endif %}
             {% if venue.status == "C" %}
             <option value="N">Not Contacted</option>
-            <option selected="selected">Contacted</option>
+            <option value="C" selected>Contacted</option>
             <option value="F">Followed Up With</option>
             <option value="B">Successfully Booked</option>
             <option value="X">Not Going To Work</option>
@@ -43,7 +43,7 @@
             {% if venue.status == "F" %}
             <option value="N">Not Contacted</option>
             <option value="C">Contacted</option>
-            <option selected="selected">Followed Up With</option>
+            <option value="F" selected>Followed Up With</option>
             <option value="B">Successfully Booked</option>
             <option value="X">Not Going To Work</option>
             {% endif %}
@@ -51,7 +51,7 @@
             <option value="N">Not Contacted</option>
             <option value="C">Contacted</option>
             <option value="F">Followed Up With</option>
-            <option selected="selected">Successfully Booked</option>
+            <option value="B" selected>Successfully Booked</option>
             <option value="X">Not Going To Work</option>
             {% endif %}
             {% if venue.status == "X" %}
@@ -59,7 +59,7 @@
             <option value="C">Contacted</option>
             <option value="F">Followed Up With</option>
             <option value="B">Successfully Booked</option>
-            <option selected="selected">Not Going To Work</option>
+            <option value="X" selected>Not Going To Work</option>
             {% endif %}
         </select>
     </p>
