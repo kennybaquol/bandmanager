@@ -79,7 +79,11 @@ WSGI_APPLICATION = 'bandmanager.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'bandmanager',
+        'NAME': 'xkdtgkjv',
+        'USER': 'xkdtgkjv',
+        'PASSWORD': 'TyVXVGi3IUKVTd1S2LFGSQkac1PXfsBT',
+        'HOST': 'ruby.db.elephantsql.com',
+        'PORT': 5432
     }
 }
 
