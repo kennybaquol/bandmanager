@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if band.user.username == user.username %}
+<h1>Edit <span class="teal-text">{{object.name}}</span></h1>
+
+<form action="{% url 'edit_venue' band.id venue.id %}" method="POST">
+    {% csrf_token %}
+    <p><label for="id_name">Name:</label>
+        <input id="id_name" type="text" value="{{ venue.name }}" name="name">
+    </p>
+    <p><label for="id_state">State:</label>
+        <input id="id_state" type="text" value="{{ venue.state }}" name="state">
+    </p>
+    <p><label for="id_city">City:</label>
+        <input id="id_city" type="text" value="{{ venue.city }}" name="city">
+    </p>
+    <p><label for="id_email">Email:</label>
+        <input id="id_email" type="text" value="{{ venue.email }}" name="email">
+    </p>
+    <p><label for="id_phone">Phone:</label>
+        <input id="id_phone" type="text" value="{{ venue.phone }}" name="phone">
+    </p>
+    <p><label for="id_note">Note:</label>
+        <input id="id_note" type="text" value="{{ venue.note }}" name="note">
+    </p>
+    <p><label for="id_status">Status:</label>
+        <select id="id_status" value="{{ venue.get_status_display }}" name="status">
+            <option value="N">Not Contacted</option>
+            <option value="C">Contacted</option>
+            <option value="F">Followed Up With</option>
+            <option value="B">Successfully Booked</option>
+            <option value="X">Not Going To Work</option>
+        </select>
+    </p>
+    <input type="submit" class="btn" value="Submit Changes">
+</form>
+{% endif %}
+
+<script>
+    const status = document.getElementById('id_status');
+    M.FormSelect.init(status);
+</script>
+
+{% endblock %}

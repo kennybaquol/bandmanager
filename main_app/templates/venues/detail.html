@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if band.user.username == user.username %}
+<h1>{{ venue.name }}</h1>
+
+<div class="row">
+    <div class="card">
+        <div class="card-content">
+            <h3>State: {{ venue.state }}</h3>
+            <h3>City: {{ venue.city }}</h3>
+            <h3>Email: {{ venue.email }}</h3>
+            <h3>Phone: {{ venue.phone }}</h3>
+            <h3>Note:{{ venue.note }}</h3>
+            <h3>Status: {{ venue.get_status_display }}</h3>
+        </div>
+        <div class="card-action">
+            <a href="{% url 'venues_update' band.id venue.id %}">Edit</a>
+            <a href="{% url 'venues_delete' band.id venue.id %}">Delete</a>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% endblock %}
