@@ -26,11 +26,41 @@
     </p>
     <p><label for="id_status">Status:</label>
         <select id="id_status" value="{{ venue.get_status_display }}" name="status">
-            <option value="N">Not Contacted</option>
+            {% if venue.status == "N" %}
+            <option selected="selected">Not Contacted</option>
             <option value="C">Contacted</option>
             <option value="F">Followed Up With</option>
             <option value="B">Successfully Booked</option>
             <option value="X">Not Going To Work</option>
+            {% endif %}
+            {% if venue.status == "C" %}
+            <option value="N">Not Contacted</option>
+            <option selected="selected">Contacted</option>
+            <option value="F">Followed Up With</option>
+            <option value="B">Successfully Booked</option>
+            <option value="X">Not Going To Work</option>
+            {% endif %}
+            {% if venue.status == "F" %}
+            <option value="N">Not Contacted</option>
+            <option value="C">Contacted</option>
+            <option selected="selected">Followed Up With</option>
+            <option value="B">Successfully Booked</option>
+            <option value="X">Not Going To Work</option>
+            {% endif %}
+            {% if venue.status == "B" %}
+            <option value="N">Not Contacted</option>
+            <option value="C">Contacted</option>
+            <option value="F">Followed Up With</option>
+            <option selected="selected">Successfully Booked</option>
+            <option value="X">Not Going To Work</option>
+            {% endif %}
+            {% if venue.status == "X" %}
+            <option value="N">Not Contacted</option>
+            <option value="C">Contacted</option>
+            <option value="F">Followed Up With</option>
+            <option value="B">Successfully Booked</option>
+            <option selected="selected">Not Going To Work</option>
+            {% endif %}
         </select>
     </p>
     <input type="submit" class="btn" value="Submit Changes">
