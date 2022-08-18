@@ -128,10 +128,6 @@ class BandCreate(LoginRequiredMixin, CreateView):
     # Let the CreateView do its job as usual
     return super().form_valid(form)
 
-class VenueDelete(LoginRequiredMixin, DeleteView):
-  model = Venue
-  success_url = '/bands/'
-
 # **NEED TO REMOVE ABILITY TO UPDATE AND DELETE BANDS LATER**
 class BandUpdate(LoginRequiredMixin, UpdateView):
   model = Band
@@ -141,3 +137,7 @@ class BandDelete(LoginRequiredMixin, DeleteView):
   model = Band
   success_url = '/bands/'
 # **NEED TO REMOVE ABILITY TO UPDATE AND DELETE BANDS LATER**
+
+class VenueDelete(LoginRequiredMixin, DeleteView):
+  model = Venue
+  success_url = '/bands/'
