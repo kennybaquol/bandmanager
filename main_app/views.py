@@ -4,8 +4,8 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Band, Venue
-from .forms import VenueForm
+from .models import Band, Venue, Gig
+from .forms import VenueForm, GigForm
 
 def signup(request):
   error_message = ''
@@ -87,6 +87,16 @@ def venues_create(request, band_id):
     'venue_form': venue_form
   })
 
+# GET route that takes the user to the page with the add gig form
+@login_required
+def gigs_create(request, band_id):
+  band = Band.objects.get(id=band_id)
+  gig_form = GigForm()
+  return render(request, 'gigs/create.html', {
+    'band': band,
+    'gig_form': gig_form
+  })
+
 # POST route that creates a Venue using the completed form data
 @login_required
 def add_venue(request, band_id):
@@ -100,6 +110,20 @@ def add_venue(request, band_id):
     new_venue.band_id = band_id
     new_venue.save()
   return redirect('venues_index', band_id=band_id)
+
+# POST route that creates a Gig using the completed form data
+@login_required
+def add_gig(request, band_id):
+  # create a ModelForm instance using the data in request.POST
+  form = GigForm(request.POST)
+  # validate the form
+  if form.is_valid():
+    # don't save the form to the db until it
+    # has the band_id assigned
+    new_gig = form.save(commit=False)
+    new_gig.band_id = band_id
+    new_gig.save()
+  return redirect('gigs_index', band_id=band_id)
 
 # GET route that takes the user to the page with the edit venue form
 @login_required

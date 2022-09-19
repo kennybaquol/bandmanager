@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if band.user.username == user.username %}
+<!-- <div class="center-align"> -->
+    <h3>Add A Gig</h3>
+
+    <form action="{% url 'add_gig' band.id %}" method="POST">
+        {% csrf_token %}
+        {{ gig_form.as_p }}
+        <input type="submit" class="btn" value="Add Gig">
+    </form>
+<!-- </div> -->
+
+{% endif %}
+
+{% endblock %}
