@@ -9,8 +9,8 @@
     <p><label for="id_name">Name (Required):</label>
         <input id="id_name" type="text" value="{{ gig.name }}" name="name">
     </p>
-    <p><label for="id_state">Date (Required):</label>
-        <input id="id_state" type="date" value="{{ gig.date }}" name="date">
+    <p><label for="id_date">Date (Required):</label>
+        <input id="id_date" type="text" name="date" onclick="changeDate()">
     </p>
     <p><label for="id_state">State (Required):</label>
         <input id="id_state" type="text" value="{{ gig.state }}" name="state">
@@ -18,17 +18,17 @@
     <p><label for="id_city">City (Required):</label>
         <input id="id_city" type="text" value="{{ gig.city }}" name="city">
     </p>
-    <p><label for="id_email">Address:</label>
-        <input id="id_email" type="text" value="{{ gig.address }}" name="address">
+    <p><label for="id_address">Address:</label>
+        <input id="id_address" type="text" value="{{ gig.address }}" name="address">
     </p>
-    <p><label for="id_phone">Set Time:</label>
-        <input id="id_phone" type="text" value="{{ gig.setTime }}" name="setTime">
+    <p><label for="id_setTime">Set Time:</label>
+        <input id="id_setTime" type="text" value="{{ gig.setTime }}" name="setTime">
     </p>
-    <p><label for="id_state">Sound Person:</label>
-        <input id="id_state" type="text" value="{{ gig.foh }}" name="foh">
+    <p><label for="id_foh">Sound Person:</label>
+        <input id="id_foh" type="text" value="{{ gig.foh }}" name="foh">
     </p>
-    <p><label for="id_state">Is the sound person confirmed?</label>
-        <input id="id_state" type="text" value="{{ gig.fohConfirmed }}" name="fohConfirmed">
+    <p><label for="id_fohConfirmed">Is the sound person confirmed?</label>
+        <input id="id_fohConfirmed" type="text" value="{{ gig.fohConfirmed }}" name="fohConfirmed">
     </p>
     <p><label for="id_note">Note:</label>
         <input id="id_note" type="text" value="{{ gig.note }}" name="note">
@@ -36,6 +36,17 @@
     <input type="submit" class="btn" value="Submit Changes">
 </form>
 {% endif %}
+
+<script>
+    function changeDate() {
+        document.getElementById("id_date").type = "date"
+    }
+
+    const date = `{{ gig.date }}`
+    const newDate = new Date(date)
+    const localeDate = newDate.toLocaleDateString()
+    document.getElementById("id_date").value = localeDate
+</script>
 
 {% endblock %}
 

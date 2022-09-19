@@ -168,14 +168,12 @@ def edit_venue(request, band_id, venue_id):
 # POST route that edits the current Gig using the completed form data
 @login_required
 def edit_gig(request, band_id, gig_id):
-  print('running edit gig')
   form = GigForm(request.POST)
   if form.is_valid():
     gig = form.save(commit=False)
     band = Band.objects.get(id=band_id)
     gig.id = gig_id
     gig.band_id = band.id
-    print(gig)
     gig.save()
   return redirect('gigs_index', band_id=band_id)
 
