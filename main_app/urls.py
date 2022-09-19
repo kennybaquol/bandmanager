@@ -12,10 +12,11 @@ urlpatterns = [
     path('bands/<int:pk>/update/', views.BandUpdate.as_view(), name='bands_update'),
     path('bands/<int:pk>/delete/', views.BandDelete.as_view(), name='bands_delete'),
     path('bands/<int:band_id>/add_venue/', views.add_venue, name='add_venue'),
-    path('bands/<int:band_id>/venues', views.venues_index, name='venues_index'),
+    path('bands/<int:band_id>/venues/', views.venues_index, name='venues_index'),
     path('bands/<int:band_id>/venues/<int:venue_id>/', views.venues_detail, name='venues_detail'),
     path('bands/<int:band_id>/venues/create/', views.venues_create, name='venues_create'),
     path('bands/<int:band_id>/venues/<int:venue_id>/update/', views.venues_update, name='venues_update'),
     path('bands/<int:band_id>/venues/<int:venue_id>/edit_venue/', views.edit_venue, name='edit_venue'),
     path('bands/<int:band_id>/venues/<int:pk>/delete/', views.VenueDelete.as_view(), name='venues_delete'),
+    path('bands/<int:band_id>/gigs/', views.gigs_index, name='gigs_index'),
 ]

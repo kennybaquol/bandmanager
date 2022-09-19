@@ -50,6 +50,18 @@ def venues_index(request, band_id):
   })
 
 @login_required
+def gigs_index(request, band_id):
+  print('running gigs index')
+  band = Band.objects.get(id=band_id)
+  print(band)
+  gigs = band.gig_set.all()
+  print(gigs)
+  return render(request, 'gigs/index.html', {
+    'gigs': gigs,
+    'band': band,
+  })
+
+@login_required
 def bands_detail(request, band_id):
   band = Band.objects.get(id=band_id)
   return render(request, 'bands/detail.html', { 

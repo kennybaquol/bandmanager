@@ -36,3 +36,24 @@ class Venue(models.Model):
 
     class Meta:
         ordering = ['-status']
+
+class Gig(models.Model):
+    name = models.CharField(max_length=150)
+    date = models.DateField() # ** USE https://simpleisbetterthancomplex.com/tutorial/2019/01/03/how-to-use-date-picker-with-django.html **
+    setTime = models.CharField(max_length=150) # The time your band will be performing
+    address = models.CharField(max_length=150)
+    state = models.CharField(max_length=150)
+    city = models.CharField(max_length=150)
+    foh = models.CharField(max_length=150, blank=True) # Front of house/sound person
+    fohConfirmed = models.BooleanField() # Is the sound person confirmed?
+    note = models.CharField(max_length=150, blank=True)
+    band = models.ForeignKey(Band, on_delete=models.CASCADE)
+
+    def __str__(self):
+        # return f"{self.get_status_display()} on {self.name}"
+        return self.name
+
+    # class Meta:
+    #     ordering = ['-status']
+    def get_absolute_url(self):
+        return reverse('detail', kwargs={'band_id': self.id})
