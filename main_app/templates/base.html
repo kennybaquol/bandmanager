@@ -22,8 +22,6 @@
                     <li><a href="{% url 'home' %}" class="left brand-logo">&nbsp;&nbsp;Band Manager</a></li>
                 </ul>
                 <ul class="right">
-                    <!-- <li><a href="{% url 'home' %}">Home</a></li>
-                    <li><a href="{% url 'about' %}">About</a></li> -->
                     {% if user.is_authenticated %}
                     <li><a href="{% url 'bands_create' %}">Add a Band</a></li>
                     <li><a href="{% url 'bands_index' %}">View My Bands</a></li>

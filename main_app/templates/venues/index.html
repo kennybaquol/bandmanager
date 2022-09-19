@@ -11,7 +11,7 @@
             </form><br><br>
 
             {% for venue in band.venue_set.all %}
-            <div class="card">
+            <div class="card grey lighten-3">
                 <a href="{% url 'venues_detail' band.id venue.id %}">
                     <span class="card-title">{{venue.name}}</span>
                     <div class="card-content">
