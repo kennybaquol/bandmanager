@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if band.user.username == user.username %}
+<h1>Edit <span class="teal-text">{{gig.name}}</span></h1>
+
+<form action="{% url 'edit_gig' band.id gig.id %}" method="POST">
+    {% csrf_token %}
+    <p><label for="id_name">Name (Required):</label>
+        <input id="id_name" type="text" value="{{ gig.name }}" name="name">
+    </p>
+    <p><label for="id_state">Date (Required):</label>
+        <input id="id_state" type="date" value="{{ gig.date }}" name="date">
+    </p>
+    <p><label for="id_state">State (Required):</label>
+        <input id="id_state" type="text" value="{{ gig.state }}" name="state">
+    </p>
+    <p><label for="id_city">City (Required):</label>
+        <input id="id_city" type="text" value="{{ gig.city }}" name="city">
+    </p>
+    <p><label for="id_email">Address:</label>
+        <input id="id_email" type="text" value="{{ gig.address }}" name="address">
+    </p>
+    <p><label for="id_phone">Set Time:</label>
+        <input id="id_phone" type="text" value="{{ gig.setTime }}" name="setTime">
+    </p>
+    <p><label for="id_state">Sound Person:</label>
+        <input id="id_state" type="text" value="{{ gig.foh }}" name="foh">
+    </p>
+    <p><label for="id_state">Is the sound person confirmed?</label>
+        <input id="id_state" type="text" value="{{ gig.fohConfirmed }}" name="fohConfirmed">
+    </p>
+    <p><label for="id_note">Note:</label>
+        <input id="id_note" type="text" value="{{ gig.note }}" name="note">
+    </p>
+    <input type="submit" class="btn" value="Submit Changes">
+</form>
+{% endif %}
+
+{% endblock %}
+
+<!-- 
+
+-->

@@ -22,4 +22,7 @@ urlpatterns = [
     path('bands/<int:band_id>/gigs/', views.gigs_index, name='gigs_index'),
     path('bands/<int:band_id>/gigs/<int:gig_id>/', views.gigs_detail, name='gigs_detail'),
     path('bands/<int:band_id>/gigs/create/', views.gigs_create, name='gigs_create'),
+    path('bands/<int:band_id>/gigs/<int:gig_id>/update/', views.gigs_update, name='gigs_update'),
+    path('bands/<int:band_id>/gigs/<int:gig_id>/edit_gig/', views.edit_gig, name='edit_gig'),
+    path('bands/<int:band_id>/gigs/<int:pk>/delete/', views.GigDelete.as_view(), name='gigs_delete'),
 ]

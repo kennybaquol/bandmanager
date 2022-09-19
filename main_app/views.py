@@ -141,6 +141,16 @@ def venues_update(request, band_id, venue_id):
     'venue': venue
   })
 
+# GET route that takes the user to the page with the edit gig form
+@login_required
+def gigs_update(request, band_id, gig_id):
+  band = Band.objects.get(id=band_id)
+  gig = Gig.objects.get(id=gig_id)
+  return render(request, 'gigs/update.html', {
+    'band': band,
+    'gig': gig
+  })
+
 # POST route that edits the current Venue using the completed form data
 @login_required
 def edit_venue(request, band_id, venue_id):
@@ -152,10 +162,22 @@ def edit_venue(request, band_id, venue_id):
     band = Band.objects.get(id=band_id)
     venue.id = venue_id
     venue.band_id = band.id
-    print(venue.phone)
-    print(venue.email)
     venue.save()
   return redirect('venues_index', band_id=band_id)
+
+# POST route that edits the current Gig using the completed form data
+@login_required
+def edit_gig(request, band_id, gig_id):
+  print('running edit gig')
+  form = GigForm(request.POST)
+  if form.is_valid():
+    gig = form.save(commit=False)
+    band = Band.objects.get(id=band_id)
+    gig.id = gig_id
+    gig.band_id = band.id
+    print(gig)
+    gig.save()
+  return redirect('gigs_index', band_id=band_id)
 
 class BandCreate(LoginRequiredMixin, CreateView):
   model = Band
@@ -182,4 +204,8 @@ class BandDelete(LoginRequiredMixin, DeleteView):
 
 class VenueDelete(LoginRequiredMixin, DeleteView):
   model = Venue
+  success_url = '/bands/'
+
+class GigDelete(LoginRequiredMixin, DeleteView):
+  model = Gig
   success_url = '/bands/'
