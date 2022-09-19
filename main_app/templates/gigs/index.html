@@ -12,10 +12,11 @@
 
             {% for gig in band.gig_set.all %}
             <div class="card">
-                <a href="{% url 'venues_detail' band.id venue.id %}">
-                    <span class="card-title">{{venue.name}}</span>
+                <a href="{% url 'venues_detail' band.id gig.id %}">
+                    <span class="card-title">{{gig.name}}</span>
                     <div class="card-content">
-                        <p>{{venue.get_status_display}}</p>
+                        <p>{{gig.date}}</p>
+                        <p>{{gig.city}}, {{gig.state}}</p>
                     </div>
             </div>
             {% endfor %}
