@@ -40,12 +40,12 @@ class Venue(models.Model):
 class Gig(models.Model):
     name = models.CharField(max_length=150)
     date = models.DateField() # ** USE https://simpleisbetterthancomplex.com/tutorial/2019/01/03/how-to-use-date-picker-with-django.html **
-    setTime = models.CharField(max_length=150) # The time your band will be performing
+    setTime = models.CharField('Set Time', max_length=150) # The time your band will be performing
     address = models.CharField(max_length=150)
     state = models.CharField(max_length=150)
     city = models.CharField(max_length=150)
-    foh = models.CharField(max_length=150, blank=True) # Front of house/sound person
-    fohConfirmed = models.BooleanField() # Is the sound person confirmed?
+    foh = models.CharField('Sound Person', max_length=150, blank=True) # Front of house/sound person
+    fohConfirmed = models.BooleanField('Is the sound person confirmed?') # Is the sound person confirmed?
     note = models.CharField(max_length=150, blank=True)
     band = models.ForeignKey(Band, on_delete=models.CASCADE)
 
