@@ -51,11 +51,8 @@ def venues_index(request, band_id):
 
 @login_required
 def gigs_index(request, band_id):
-  print('running gigs index')
   band = Band.objects.get(id=band_id)
-  print(band)
   gigs = band.gig_set.all()
-  print(gigs)
   return render(request, 'gigs/index.html', {
     'gigs': gigs,
     'band': band,
@@ -75,6 +72,15 @@ def venues_detail(request, band_id, venue_id):
   return render(request, 'venues/detail.html', { 
     'band': band,
     'venue': venue 
+  })
+
+@login_required
+def gigs_detail(request, band_id, gig_id):
+  band = Band.objects.get(id=band_id)
+  gig = Gig.objects.get(id=gig_id)
+  return render(request, 'gigs/detail.html', { 
+    'band': band,
+    'gig': gig
   })
 
 # GET route that takes the user to the page with the add venue form

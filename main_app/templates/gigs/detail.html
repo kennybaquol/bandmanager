@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if band.user.username == user.username %}
+<h1>{{ gig.name }}</h1>
+
+<div class="row">
+    <div class="card">
+        <div class="card-content">
+            <h3>Date: {{ gig.date }}</h3>
+            <h3>State: {{ gig.state }}</h3>
+            <h3>City: {{ gig.city }}</h3>
+            <h3>Address: {{ gig.address }}</h3>
+            <h3>Set Time: {{ gig.setTime }}</h3>
+            <h3>Sound Person: {{ gig.foh }}</h3>
+            <h3>Is the sound person confirmed?: {{ gig.fohConfirmed }}</h3>
+            <h3>Note: {{ gig.note }}</h3>
+        </div>
+        <div class="card-action">
+            <a href="{% url 'venues_update' band.id gig.id %}">Edit</a>
+            <a href="{% url 'venues_delete' band.id gig.id %}">Delete</a>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% endblock %}

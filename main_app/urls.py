@@ -20,6 +20,6 @@ urlpatterns = [
     path('bands/<int:band_id>/venues/<int:pk>/delete/', views.VenueDelete.as_view(), name='venues_delete'),
     path('bands/<int:band_id>/add_gig/', views.add_gig, name='add_gig'),
     path('bands/<int:band_id>/gigs/', views.gigs_index, name='gigs_index'),
-
+    path('bands/<int:band_id>/gigs/<int:gig_id>/', views.gigs_detail, name='gigs_detail'),
     path('bands/<int:band_id>/gigs/create/', views.gigs_create, name='gigs_create'),
 ]

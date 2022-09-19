@@ -1,17 +1,16 @@
 footer {
     margin-top: 3%;
-    ;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
 }
 
 .card {
     margin: 2% 15%;
     background-color: whitesmoke;
     text-align: center;
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
 }
 
 .addPrompt {
