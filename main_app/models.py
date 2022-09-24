@@ -11,6 +11,12 @@ STATUSES = (
     ('X', 'Not Going To Work')
 )
 
+INVENTORYCATEGORIES = (
+    ('CL', 'Clothing'),
+    ('MU', 'Music'),
+    ('ME', 'Merchandise')
+)
+
 class Band(models.Model):
     name = models.CharField(max_length=150)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -56,8 +62,19 @@ class Gig(models.Model):
         return reverse('detail', kwargs={'band_id': self.id})
 
 class InventoryItem(models.Model):
-    # item name, item category ?, quantity, size, # bought, cost, # sold, selling price, date bought, date sold (for each instance), batch #?
+    # HAVE BUY AND SELL FUNCTIONALITY
+    # HAVE SORT FUNCTIONALITY
     
+    # item name, item category ?, quantity remaining, size, # bought, cost, # sold, selling price, date bought, date sold (for each instance), batch #?
+    # SHIRT - t-shirt, clothing,              30,       M,  50 bought, $12 each, 20,   $15 each,    6/1/22,         6/5/22, 6/6/22, etc.         1? 
+    # CD - IzMyHed CD,  music,            15,      jacket,  50 bought, $7 each, 35,    $10 each,    6/20/22,       6/21/22, 7/4/22, etc.         3?         
+    # STICKER - sticker,  merch,         15
+    
+    category = models.CharField(max_length=12, choices=INVENTORYCATEGORIES, default=INVENTORYCATEGORIES[0][0])
+    name = models.CharField('Name (Required)', max_length=150)
+    currentQuantity
+    size
+
     band = models.ForeignKey(Band, on_delete=models.CASCADE)
 
     def __str__(self):
