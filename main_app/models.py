@@ -50,10 +50,18 @@ class Gig(models.Model):
     band = models.ForeignKey(Band, on_delete=models.CASCADE)
 
     def __str__(self):
-        # return f"{self.get_status_display()} on {self.name}"
         return self.name
 
-    # class Meta:
-    #     ordering = ['-status']
+    def get_absolute_url(self):
+        return reverse('detail', kwargs={'band_id': self.id})
+
+class InventoryItem(models.Model):
+    # item name, item category ?, quantity, size, # bought, cost, # sold, selling price, date bought, date sold (for each instance), batch #?
+    
+    band = models.ForeignKey(Band, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
+
     def get_absolute_url(self):
         return reverse('detail', kwargs={'band_id': self.id})

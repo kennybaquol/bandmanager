@@ -15,7 +15,7 @@ https://band-manager-2022.herokuapp.com/
 ## Next Steps/Icebox Items
 [] Responsiveness for mobile UX  
 [] API Functionality (Google Calendar, etc.)  
-[] Gig model  
+[X] Gig model  
 [] SongsToLearn model  
 [] SetList model  
 [] Calendar model  
