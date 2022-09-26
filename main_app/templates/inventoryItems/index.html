@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if band.user.username == user.username %}
+<div class="center-align">
+    <h2>Inventory</h2>
+
+    <div class="row">
+        <a href="{% url 'gigs_create' band.id %}">
+            <input type="button" class="btn" value="Add Inventory Item">
+            </form><br><br>
+
+            {% for inventoryItem in band.inventoryItem_set.all %}
+            <div class="card grey lighten-3">
+                <a href="{% url 'gigs_detail' band.id inventoryItem.id %}">
+                    <span class="card-title">{{inventoryItem.name}}</span>
+                    <div class="card-content">
+                        <p>{{inventoryItem.category}}</p>
+                        <p>{{inventoryItem.currentQuantity}}</p>
+                        <p>{{inventoryItem.size}}</p>
+                        <p>{{inventoryItem.cost}}</p>
+                        <p>{{inventoryItem.sellingPrice}}</p>
+                    </div>
+            </div>
+            {% endfor %}
+    </div>
+</div>
+
+{% endif %}
+
+{% endblock %}
