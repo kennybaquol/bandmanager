@@ -7,9 +7,14 @@
 <form action="{% url 'add_inventoryItem' band.id %}" method="POST">
     {% csrf_token %}
     {{ inventoryItem_form.as_p }}
-    <input type="submit" class="btn" value="Add Gig">
+    <input type="submit" class="btn" value="Add Item">
 </form>
 
 {% endif %}
+
+<script>
+    const category = document.getElementById('id_category');
+    M.FormSelect.init(category);
+</script>
 
 {% endblock %}

@@ -175,10 +175,12 @@ def add_inventoryItem(request, band_id):
   if form.is_valid():
     # don't save the form to the db until it
     # has the band_id assigned
+    print('valid!')
     new_inventoryItem = form.save(commit=False)
     new_inventoryItem.band_id = band_id
     new_inventoryItem.save()
-  return redirect('inventoryItems_index', band_id=band_id)
+    print(new_inventoryItem)
+  return redirect('inventory', band_id=band_id)
 
 #
 # UPDATE VIEWS
