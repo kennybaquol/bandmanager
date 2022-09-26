@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if band.user.username == user.username %}
+<h3>Add An Item</h3>
+
+<form action="{% url 'add_inventoryItem' band.id %}" method="POST">
+    {% csrf_token %}
+    {{ inventoryItem_form.as_p }}
+    <input type="submit" class="btn" value="Add Gig">
+</form>
+
+{% endif %}
+
+{% endblock %}

@@ -33,6 +33,10 @@ def home(request):
 def about(request):
     return render(request, 'about.html')
 
+#
+# INDEX VIEWS
+#
+
 @login_required
 def bands_index(request):
     bands = Band.objects.filter(user=request.user)
@@ -67,6 +71,10 @@ def inventoryItems_index(request, band_id):
     'band': band,
   })
 
+#
+# DETAIL VIEWS
+#
+
 @login_required
 def bands_detail(request, band_id):
   band = Band.objects.get(id=band_id)
@@ -92,6 +100,10 @@ def gigs_detail(request, band_id, gig_id):
     'gig': gig
   })
 
+#
+# CREATE VIEWS
+#
+
 # GET route that takes the user to the page with the add venue form
 @login_required
 def venues_create(request, band_id):
@@ -111,6 +123,20 @@ def gigs_create(request, band_id):
     'band': band,
     'gig_form': gig_form
   })
+
+# GET route that takes the user to the page with the add inventoryItem form
+@login_required
+def inventoryItems_create(request, band_id):
+  band = Band.objects.get(id=band_id)
+  inventoryItem_form = InventoryItemForm()
+  return render(request, 'inventoryItems/create.html', {
+    'band': band,
+    'inventoryItem_form': inventoryItem_form
+  })
+
+#
+# ADD VIEWS
+#
 
 # POST route that creates a Venue using the completed form data
 @login_required
@@ -154,6 +180,10 @@ def add_inventoryItem(request, band_id):
     new_inventoryItem.save()
   return redirect('inventoryItems_index', band_id=band_id)
 
+#
+# UPDATE VIEWS
+#
+
 # GET route that takes the user to the page with the edit venue form
 @login_required
 def venues_update(request, band_id, venue_id):
@@ -173,6 +203,10 @@ def gigs_update(request, band_id, gig_id):
     'band': band,
     'gig': gig
   })
+
+#
+# EDIT VIEWS
+#
 
 # POST route that edits the current Venue using the completed form data
 @login_required
@@ -199,6 +233,10 @@ def edit_gig(request, band_id, gig_id):
     gig.band_id = band.id
     gig.save()
   return redirect('gigs_index', band_id=band_id)
+
+#
+# GENERIC VIEWS
+#
 
 class BandCreate(LoginRequiredMixin, CreateView):
   model = Band

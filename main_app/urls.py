@@ -30,4 +30,6 @@ urlpatterns = [
 
     path('bands/<int:band_id>/add_inventoryItem/', views.add_inventoryItem, name='add_inventoryItem'),
     path('bands/<int:band_id>/inventory/', views.inventoryItems_index, name='inventoryItems_index'),
+
+    path('bands/<int:band_id>/inventory/create/', views.inventoryItems_create, name='inventoryItems_create'),
 ]
