@@ -72,9 +72,12 @@ class InventoryItem(models.Model):
     
     category = models.CharField(max_length=12, choices=INVENTORYCATEGORIES, default=INVENTORYCATEGORIES[0][0])
     name = models.CharField('Name (Required)', max_length=150)
-    currentQuantity
-    size
-
+    size = models.CharField(max_length=50, blank=True)
+    currentQuantity = models.PositiveIntegerField(default=0)
+    batchCost = models.DecimalField(decimal_places=2, max_digits=20, blank=True)
+    sellingPrice = models.DecimalField(decimal_places=2, max_digits=20, blank=True)
+    dateBought = models.DateField(blank=True, default=date.today)
+    dateSold = models.DateField(blank=True, default=date.today)
     band = models.ForeignKey(Band, on_delete=models.CASCADE)
 
     def __str__(self):

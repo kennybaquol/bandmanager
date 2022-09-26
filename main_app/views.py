@@ -4,8 +4,8 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Band, Venue, Gig
-from .forms import VenueForm, GigForm
+from .models import *
+from .forms import *
 
 def signup(request):
   error_message = ''
@@ -55,6 +55,15 @@ def gigs_index(request, band_id):
   gigs = band.gig_set.all()
   return render(request, 'gigs/index.html', {
     'gigs': gigs,
+    'band': band,
+  })
+
+@login_required
+def inventoryItems_index(request, band_id):
+  band = Band.objects.get(id=band_id)
+  inventoryItems = band.gig_set.all()
+  return render(request, 'inventoryItems/index.html', {
+    'inventoryItems': inventoryItems,
     'band': band,
   })
 
@@ -130,6 +139,20 @@ def add_gig(request, band_id):
     new_gig.band_id = band_id
     new_gig.save()
   return redirect('gigs_index', band_id=band_id)
+
+# POST route that creates an InventoryItem using the completed form data
+@login_required
+def add_inventoryItem(request, band_id):
+  # create a ModelForm instance using the data in request.POST
+  form = InventoryItemForm(request.POST)
+  # validate the form
+  if form.is_valid():
+    # don't save the form to the db until it
+    # has the band_id assigned
+    new_inventoryItem = form.save(commit=False)
+    new_inventoryItem.band_id = band_id
+    new_inventoryItem.save()
+  return redirect('inventoryItems_index', band_id=band_id)
 
 # GET route that takes the user to the page with the edit venue form
 @login_required

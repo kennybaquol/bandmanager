@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 from django import forms
-from .models import Venue, Gig
+from .models import *
 
 class DatePickerInput(forms.DateInput):
     input_type = 'date'
@@ -18,3 +18,8 @@ class GigForm(ModelForm):
         widgets = {
             'date' : DatePickerInput()
         }
+
+class InventoryItemForm(ModelForm):
+    class Meta:
+        model = InventoryItem
+        fields = ['category', 'name', 'size']
